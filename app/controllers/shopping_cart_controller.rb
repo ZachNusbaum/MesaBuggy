@@ -16,6 +16,14 @@ class ShoppingCartController < ApplicationController
     redirect_to cart_url
   end
 
+  def apply_coupon
+    return back_to_cart unless Coupon.exists?(code: coupon_params[:code])
+    @coupon = Coupon.find_by_code(coupon_params[:code])
+    return back_to_cart if @order.order_coupons.exists?(coupon_id: @coupon.id)
+    @order.coupons << @coupon
+    redirect_to cart_url
+  end
+
   private
 
   def create_order
@@ -33,5 +41,13 @@ class ShoppingCartController < ApplicationController
     else
       create_order
     end
+  end
+
+  def coupon_params
+    params.require(:coupon).permit(:code)
+  end
+
+  def back_to_cart
+    redirect_to cart_url
   end
 end

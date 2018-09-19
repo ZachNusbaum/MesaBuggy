@@ -1,0 +1,10 @@
+
+
+<% if order.coupons.any? %>
+	<p class="lead">You have applied the following coupon: <%= order.coupons.first.code %></p>
+<% else %>
+	<%= simple_form_for :coupon, url: apply_coupon_path, method: :post do |f| %>
+		<%= f.input :code, label: 'Discount Code' %>
+		<%= f.submit 'Apply Coupon', class: 'btn btn-success' %>
+	<% end %>
+<% end %>

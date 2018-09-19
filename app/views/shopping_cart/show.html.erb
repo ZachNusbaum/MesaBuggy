@@ -22,4 +22,8 @@
 			<% end %>
 		</tbody>
 	</table>
+	<%= render 'coupon_form', order: @order %>
+	<p>SUBTOTAL: <%= @order.subtotal %></p>
+	<p>DISC. TOTAL: <%= @order.discount_total %></p>
+	<p>TOTAL: <%= @order.total %></p>
 </div>
