@@ -12,5 +12,8 @@
   <body>
     <%= render 'layouts/navbar' %>
     <%= yield %>
+    <pre>
+      <%= pp session.to_h %>
+    </pre>
   </body>
 </html>

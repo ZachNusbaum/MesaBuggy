@@ -4,6 +4,10 @@ Rails.application.routes.draw do
   resources :categories, only: [:show]
   resources :products, only: [:show]
 
+  scope :cart do
+    get '/', to: 'shopping_cart#show', as: 'cart'
+  end
+
   get 'privacy_policy', to: 'pages#privacy'
   get 'about', to: 'pages#about'
 
