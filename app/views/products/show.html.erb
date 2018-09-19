@@ -7,7 +7,9 @@
       <br>
       <div class="card">
         <h6 class="card-header">More Info</h6>
-        <div class="card-body">Placeholder</div>
+        <div class="card-body">
+          <%= link_to 'Add To Cart', cart_add_item_path(@product.id), method: :post %>
+        </div>
       </div>
     </div>
     <!-- /.col-lg-3 -->

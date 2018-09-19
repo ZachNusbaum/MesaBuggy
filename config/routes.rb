@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 
   scope :cart do
     get '/', to: 'shopping_cart#show', as: 'cart'
+    post 'add/:id', to: 'shopping_cart#add_product', as: 'cart_add_item'
   end
 
   get 'privacy_policy', to: 'pages#privacy'
