@@ -1,4 +1,5 @@
 class ShoppingCartController < ApplicationController
+  skip_before_action :authenticate_user!
   before_action :set_order
 
   def show
@@ -7,13 +8,14 @@ class ShoppingCartController < ApplicationController
   def add_product
     if @order.cart_items.exists?(product_id: params[:id])
       @item = @order.cart_items.find_by(product_id: params[:id])
+      @product = @item.product
       @item.qty += 1
       @item.save
     else
       @product = Product.find(params[:id])
       @order.products << @product
     end
-    redirect_to cart_url
+    redirect_to cart_url, notice: "<b>#{@product.name}</b> added to cart!"
   end
 
   def apply_coupon
@@ -21,7 +23,7 @@ class ShoppingCartController < ApplicationController
     @coupon = Coupon.find_by_code(coupon_params[:code])
     return back_to_cart if @order.order_coupons.exists?(coupon_id: @coupon.id)
     @order.coupons << @coupon
-    redirect_to cart_url
+    redirect_to cart_url, notice: 'Coupon applied!'
   end
 
   private
@@ -48,6 +50,6 @@ class ShoppingCartController < ApplicationController
   end
 
   def back_to_cart
-    redirect_to cart_url
+    redirect_to cart_url, alert: 'Error adding coupon'
   end
 end
