@@ -6,8 +6,9 @@ class ShoppingCartController < ApplicationController
 
   def add_product
     if @order.cart_items.exists?(product_id: params[:id])
-      @product = @order.products.find_by(product_id: params[:id])
-      @order.products.qty += 1
+      @item = @order.cart_items.find_by(product_id: params[:id])
+      @item.qty += 1
+      @item.save
     else
       @product = Product.find(params[:id])
       @order.products << @product
