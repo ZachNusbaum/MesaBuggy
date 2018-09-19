@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  ActiveAdmin.routes(self)
   get 'privacy_policy', to: 'pages#privacy'
   get 'about', to: 'pages#about'
   root to: 'pages#home'
