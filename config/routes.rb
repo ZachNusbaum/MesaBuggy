@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
 
   resources :categories, only: [:show]
+  resources :products, only: [:show]
 
   get 'privacy_policy', to: 'pages#privacy'
   get 'about', to: 'pages#about'
