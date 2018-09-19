@@ -12,6 +12,7 @@
 						<h5 class="card-header"><%= product.name %></h5>
 						<div class="card-body">
 							<p><%= truncate(product.description, length: 50) %></p>
+							<p><%= product.price.format %></p>
 						</div>
 					</div>
 				</div>
