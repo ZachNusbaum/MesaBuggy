@@ -1,5 +1,5 @@
 class Coupons::Percent < Coupon
   def value
-    amount / 100
+    amount.to_d / 100
   end
 end
