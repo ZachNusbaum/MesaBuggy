@@ -1,0 +1,22 @@
+<div class="container">
+	<h1><%= @category.name %></h1>
+	<p class="lead"><%= @category.description %></p>
+	<hr>
+	<div class="row">
+		<% if @category.products.empty? %>
+			<p class="lead">This category does not have any products.</p>
+		<% else %>
+			<% @category.products.each do |product| %>
+				<div class="col-md-4">
+					<div class="card">
+						<h5 class="card-header"><%= product.name %></h5>
+						<div class="card-body">
+							<p><%= truncate(product.description, length: 50) %></p>
+						</div>
+					</div>
+				</div>
+			<% end %>
+		<% end %>
+	</div>
+</div>
+
