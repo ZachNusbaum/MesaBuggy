@@ -5,11 +5,12 @@
   <!-- Jumbotron Header -->
   <header class="jumbotron my-4">
     <h1 class="display-3">A Warm Welcome!</h1>
-    <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa, ipsam, eligendi, in quo sunt possimus non incidunt odit vero aliquid similique quaerat nam nobis illo aspernatur vitae fugiat numquam repellat.</p>
-    <a href="#" class="btn btn-primary btn-lg">Call to action!</a>
+    <p class="lead">Welcome to <i>Ozzy and Dez' Pet Store! We carry a large selection of pet products for all of your needs.</i></p>
+    <a href="#" class="btn btn-primary btn-lg">Explore</a>
   </header>
 
   <!-- Page Features -->
+  <h4 class="text-center">Featured Items</h4>
   <div class="row text-center">
   	<% Product.all.limit(4).each do |product| %>
 		<div class="col-lg-3 col-md-6 mb-4">
@@ -20,7 +21,10 @@
 	          <p class="card-text"><%= truncate product.description, length: 75 %></p>
 	        </div>
 	        <div class="card-footer">
-	        	<%= link_to 'Find Out More!', product_path(product), class: 'btn btn-primary' %>
+	        	<div class="btn-group">
+	        		<%= link_to 'Find Out More!', product_path(product), class: 'btn btn-success btn-sm' %>
+	        		<%= link_to 'Favorite', 'javascript:alert("Not yet implemented.")', class: 'btn btn-info btn-sm' %>
+	        	</div>
 	        </div>
 	      </div>
 	    </div>
