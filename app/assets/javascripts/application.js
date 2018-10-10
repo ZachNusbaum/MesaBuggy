@@ -12,7 +12,6 @@
 //
 //= require rails-ujs
 //= require activestorage
-//= require actiontext
 //= require turbolinks
 //= require jquery
 //= require bootstrap

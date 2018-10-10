@@ -2,6 +2,10 @@
   "name": "MesaBuggy",
   "private": true,
   "dependencies": {
+    "@rails/webpacker": "3.5",
     "actiontext": "https://github.com/rails/actiontext"
+  },
+  "devDependencies": {
+    "webpack-dev-server": "2.11.2"
   }
 }

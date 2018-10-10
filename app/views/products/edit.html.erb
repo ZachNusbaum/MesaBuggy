@@ -1,7 +1,11 @@
-<%= form_with(model: @product) do |form| %>
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.rich_text_area :description %>
-  </div>
-  <input type="submit">
-<% end %>
+<div class="container">
+	<h2>Editing: <small><%= @product.name %></small></h2>
+	<hr>
+	<%= form_with(model: @product, method: :patch, local: true) do |form| %>
+	  <div class="field">
+	    <%= form.label :description %>
+	    <%= form.rich_text_area :description %>
+	  </div>
+	  <input type="submit">
+	<% end %>
+</div>
