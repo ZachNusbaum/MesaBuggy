@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   resources :categories, only: [:show]
   resources :products, only: [:show]
+  resources :attachments, only: [:destroy]
 
   scope :cart do
     get '/', to: 'shopping_cart#show', as: 'cart'

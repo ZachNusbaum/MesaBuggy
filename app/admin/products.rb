@@ -31,6 +31,7 @@ permit_params :name, :description, :category_id, :price_cents, :quantity, :weigh
 
     product.images.each do |image|
       para raw("<img src=\"#{url_for image}\">")
+      para(link_to('Delete', attachment_path(image.id), method: :delete))
     end
   end
 
