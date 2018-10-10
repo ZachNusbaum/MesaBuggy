@@ -61,3 +61,5 @@ gem 'activeadmin'
 gem 'money-rails'
 gem 'rails-erd'
 gem 'simple_form'
+
+gem "aws-sdk-s3", require: false
