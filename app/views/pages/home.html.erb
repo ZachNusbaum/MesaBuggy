@@ -23,7 +23,7 @@
 	        
 	        <div class="card-body">
 	          <h4 class="card-title"><%= product.name %></h4>
-	          <p class="card-text"><%= truncate strip_tags(product.description.body.to_s), length: 75 %></p>
+	          <p class="card-text"><%= truncate strip_tags(product.description), length: 75 %></p>
 	          <h5><%= product.price.format %></h5>
 	        </div>
 	        <div class="card-footer">
