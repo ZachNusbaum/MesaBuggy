@@ -64,3 +64,5 @@ gem 'simple_form'
 
 gem "aws-sdk-s3", require: false
 gem 'image_processing', '~> 1.2'
+gem "actiontext", github: "rails/actiontext", require: "action_text"
+gem "webpacker"

@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
 
   resources :categories, only: [:show]
-  resources :products, only: [:show]
+  resources :products, only: [:show, :edit]
   resources :attachments, only: [:destroy]
 
   scope :cart do

@@ -1,5 +1,7 @@
 {
   "name": "MesaBuggy",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "actiontext": "https://github.com/rails/actiontext"
+  }
 }

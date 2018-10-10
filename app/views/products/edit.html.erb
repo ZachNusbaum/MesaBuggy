@@ -1,0 +1,7 @@
+<%= form_with(model: @product) do |form| %>
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.rich_text_area :description %>
+  </div>
+  <input type="submit">
+<% end %>
