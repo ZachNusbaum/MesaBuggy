@@ -8,6 +8,7 @@ permit_params :name, :description
     selectable_column
     column :id
     column :name
+    column('Product count') { |cat| cat.products.count }
     column :created_at
     column :updated_at
     actions
