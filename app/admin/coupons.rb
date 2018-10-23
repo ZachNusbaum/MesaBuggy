@@ -4,6 +4,16 @@ ActiveAdmin.register Coupon do
 #
 permit_params :type, :amount, :starts_at, :ends_at, :code
 
+  index do
+    selectable_column
+    column :id
+    column(:type) { |coupon| coupon.type.split('::')[1] }
+    column :code
+    column :amount
+    column :active
+    actions
+  end
+
   form do |f|
     f.inputs 'New Coupon' do
       f.input :type, as: :select, collection: {

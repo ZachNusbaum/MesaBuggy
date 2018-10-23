@@ -4,6 +4,16 @@ ActiveAdmin.register Product do
 #
 permit_params :name, :description, :category_id, :price_cents, :price, :quantity, :weight, :published, images: []
 
+  index do
+    selectable_column
+    column :id
+    column :name
+    column :category
+    column(:price) { |product| product.price.format }
+    column :published
+    actions
+  end
+
   form do |f|
     f.inputs 'Product Details' do
       f.input :category
