@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'search/new'
+  get 'search/show'
   ActiveAdmin.routes(self)
 
   resources :categories, only: [:show]

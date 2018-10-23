@@ -1,4 +1,14 @@
 GIT
+  remote: https://github.com/activerecord-hackery/ransack.git
+  revision: 7145471d2083c0e258a981b682a64ad660a89fd3
+  specs:
+    ransack (2.0.1)
+      actionpack (>= 5.0)
+      activerecord (>= 5.0)
+      activesupport (>= 5.0)
+      i18n
+
+GIT
   remote: https://github.com/rails/actiontext.git
   revision: a31f691ea9ec973e2d4b4c39c993e4114a7123c3
   specs:
@@ -227,11 +237,6 @@ GEM
       rake (>= 0.8.7)
       thor (>= 0.19.0, < 2.0)
     rake (12.3.1)
-    ransack (2.0.1)
-      actionpack (>= 5.0)
-      activerecord (>= 5.0)
-      activesupport (>= 5.0)
-      i18n
     rb-fsevent (0.10.3)
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)
@@ -315,6 +320,7 @@ DEPENDENCIES
   rails (~> 5.2.1)
   rails-erd
   rails_db (= 2.0.2)
+  ransack!
   sass-rails (~> 5.0)
   simple_form
   spring
