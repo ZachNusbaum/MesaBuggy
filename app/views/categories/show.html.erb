@@ -10,6 +10,11 @@
 			<% @category.products.each do |product| %>
 				<div class="col-md-4">
 					<div class="card">
+						<% if product.images.any? %>
+				      		<img class="card-img-top" src="<%= url_for(product.images.first) %>" alt="">
+				      	<% else %>
+				      		<img class="card-img-top" src="http://placehold.it/500x325" alt="">
+				      	<% end %>
 						<h5 class="card-header"><%= product.name %></h5>
 						<div class="card-body">
 							<p><%= truncate(product.description, length: 50) %></p>
