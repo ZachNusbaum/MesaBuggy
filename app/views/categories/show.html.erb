@@ -7,11 +7,12 @@
 		<% if @category.products.empty? %>
 			<p class="lead">This category does not have any products.</p>
 		<% else %>
-			<% @category.products.each do |product| %>
-				<div class="col-md-4">
+			<div class="card-group">
+				<% @category.products.each do |product| %>
+				
 					<div class="card">
 						<% if product.images.any? %>
-				      		<img class="card-img-top"  src="<%= url_for(product.images.first) %>" alt="">
+				      		<img class="card-img-top img-responsive"  src="<%= url_for(product.images.first) %>" alt="">
 				      	<% else %>
 				      		<img class="card-img-top" src="http://placehold.it/500x325" alt="">
 				      	<% end %>
@@ -22,8 +23,10 @@
 							<%= link_to 'Details', product_path(product), class: 'btn btn-primary btn-sm' %>
 						</div>
 					</div>
-				</div>
+				
 			<% end %>
+			</div>
+			
 		<% end %>
 	</div>
 </div>
