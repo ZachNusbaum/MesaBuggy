@@ -6,6 +6,6 @@ class SearchController < ApplicationController
 
   def show
     @q = Product.ransack(params[:q])
-    @products = @q.result(distinct: true)
+    @products = @q.result(distinct: true).includes(:category)
   end
 end

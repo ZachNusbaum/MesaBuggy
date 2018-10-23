@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
-  get 'search/new'
-  get 'search/show'
+  scope :search do
+    get '/', to: 'search#new'
+    get '/results', to: 'search#show'
+  end
+  
   ActiveAdmin.routes(self)
 
   resources :categories, only: [:show]
