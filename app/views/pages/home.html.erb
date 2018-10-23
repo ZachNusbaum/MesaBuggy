@@ -30,7 +30,7 @@
 	        <div class="card-footer">
 	        	<div class="btn-group">
 	        		<%= link_to 'More', product_path(product), class: 'btn btn-primary btn-sm' %>
-	        		<%= link_to 'Add to Cart', product_path(product), class: 'btn btn-success btn-sm' %>
+	        		<%= link_to 'Add to Cart', cart_add_item_path(product.id), class: 'btn btn-success btn-sm' %>
 	        		<%= link_to 'Buy Now', 'javascript:alert("Not yet implemented.")', class: 'btn btn-info btn-sm' %>
 	        	</div>
 	        </div>
