@@ -1,4 +1,5 @@
 class SearchController < ApplicationController
+  skip_before_action :authenticate_user!
   skip_before_action :set_search_query
   def new
     @q =  Product.ransack(params[:q])
