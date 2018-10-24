@@ -1,9 +1,13 @@
 Rails.application.routes.draw do
+  namespace :reports do
+    resources :visits, only: [:show]
+  end
+
   scope :search do
     get '/', to: 'search#new'
     get '/results', to: 'search#show'
   end
-  
+
   ActiveAdmin.routes(self)
 
   resources :categories, only: [:show]

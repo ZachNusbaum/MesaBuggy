@@ -1,0 +1,69 @@
+
+<div class="container">
+	<h1>Visit Report</h1>
+	<p class="lead">ID: <%= @visit.visit_token %></p>
+	<p><%= @visit.started_at %></p>
+	<hr>
+
+	<table class="table table-sm table-bordered">
+		<tr>
+			<th>IP</th>
+			<td><%= @visit.ip %></td>
+		</tr>
+
+		<tr>
+			<th>User Agent</th>
+			<td><%= @visit.user_agent %></td>
+		</tr>
+
+		<tr>
+			<th>Referrer / Domain</th>
+			<% if !!@visit.referrer || !!@visit.referring_domain %>
+				<td><%= @visit.referrer %> / <%= @visit.referring_domain %></td>
+			<% else %>
+				<td>None</td>
+			<% end %>
+		</tr>
+
+		<tr>
+			<th>Landing Page</th>
+			<td><%= @visit.landing_page %></td>
+		</tr>
+
+		<tr>
+			<th>Browser / OS / Device Type</th>
+			<td><%= @visit.browser %> / <%= @visit.os %> / <%= @visit.device_type %></td>
+		</tr>
+
+		<tr>
+			<th>City, Region, Country</th>
+			<td><%= @visit.city %>, <%= @visit.region %>, <%= @visit.country %></td>
+		</tr>
+
+		<tr>
+			<th>UTM Source</th>
+			<td><%= @visit.utm_source %></td>
+		</tr>
+	</table>
+
+	<hr>
+
+	<h2><%= pluralize(@visit.events.count, "Event") %></h2>
+	<table class="table table-bordered table-hover table-striped">
+		<thead>
+			<tr>
+				<th>Action</th>
+				<th>Properties</th>
+			</tr>
+		</thead>
+
+		<tbody>
+			<% @visit.events.each do |event| %>
+				<tr>
+					<td><%= event.name %></td>
+					<td><%= pp event.properties %></td>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
+</div>

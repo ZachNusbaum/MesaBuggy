@@ -1,0 +1,2 @@
+module Reports::VisitsHelper
+end

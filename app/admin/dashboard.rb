@@ -13,6 +13,7 @@ ActiveAdmin.register_page "Dashboard" do
       column do
         panel 'Recent Visits' do
           table_for Ahoy::Visit.all.order(started_at: :desc).limit(10) do
+            column('ID') { |visit| link_to visit.ip, reports_visit_path(visit.visit_token), target: '_blank'}
             column :ip
             column :referrer
             column('City / Region') { |visit| "#{visit.city}, #{visit.region}" }
