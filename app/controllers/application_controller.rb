@@ -14,6 +14,6 @@ class ApplicationController < ActionController::Base
   end
 
   def track_page_visit
-    ahoy.track "Ran action", request.path_parameters
+    ahoy.track "Access Route", request.path_parameters
   end
 end
