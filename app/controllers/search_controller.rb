@@ -14,6 +14,6 @@ class SearchController < ApplicationController
   private
 
   def record_search
-    ahoy.track "Site search", request.path_parameters
+    ahoy.track "Site search", params[:q]
   end
 end
