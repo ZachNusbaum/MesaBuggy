@@ -4,7 +4,7 @@ ActiveAdmin.register_page "Statistics" do
       column do
         panel 'Cities' do
           Ahoy::Visit.group("city").count.each do |city, count|
-            para "City: #{city}, Count: #{count}"
+            para raw("City: #{city} &mdash; Count: #{count}")
           end
         end
       end
