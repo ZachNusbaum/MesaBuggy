@@ -3,9 +3,8 @@ ActiveAdmin.register_page "Statistics" do
     columns do
       column do
         panel 'Cities' do
-          table_for Ahoy::Visit.group("city").count do
-            column('City') { |city| city.keys.first.to_s }
-            column('Visits') { |city| city.first[1] }
+          Ahoy::Visit.group("city").count.each do |city, count|
+            para "City: #{city}, Count: #{count}"
           end
         end
       end
