@@ -6,3 +6,5 @@ Ahoy.api = false
 
 # better user agent parsing
 Ahoy.user_agent_parser = :device_detector
+
+Ahoy.track_bots = true
