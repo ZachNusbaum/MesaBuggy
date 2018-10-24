@@ -25,7 +25,13 @@ ActiveAdmin.register_page "Dashboard" do
             .order(time: :desc)
             .limit(10) do
             column :time
-            column :properties
+            column("IP") { |event| event.visit.ip }
+            column("Search query"){ |event|
+              event.properties.each do |key, value|
+                para raw("<b>#{key}</b>: #{value}<br>")
+              end
+              nil
+            }
           end
         end
       end
