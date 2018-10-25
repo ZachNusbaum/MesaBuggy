@@ -7,16 +7,17 @@
 		<% if @category.products.empty? %>
 			<p class="lead">This category does not have any products.</p>
 		<% else %>
-			<div class="card-group">
+			<div class="card-deck">
 				<% @category.products.each do |product| %>
-				
+
 					<div class="card">
-						<% if product.images.any? %>
-				      		<img class="card-img-top img-responsive"  src="<%= url_for(product.images.first.variant(resize: "200x200")) %>" alt="">
-				      	<% else %>
-				      		<img class="card-img-top" src="http://placehold.it/500x325" alt="">
-				      	<% end %>
 						<h5 class="card-header"><%= product.name %></h5>
+						<% if product.images.any? %>
+				      		<img class="card-img-top img-fluid"  src="<%= url_for(product.images.first.variant(resize: "200x200")) %>" alt="">
+				      	<% else %>
+				      		<img class="card-img-top img-fluid" src="http://placehold.it/200x200" alt="">
+				      	<% end %>
+						
 						<div class="card-body">
 							<p><%= truncate(product.description, length: 50) %></p>
 							<p><%= product.price.format %></p>
