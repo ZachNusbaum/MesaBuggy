@@ -33,3 +33,7 @@ module MesaBuggy
     config.active_job.queue_adapter = :delayed_job
   end
 end
+
+Raven.configure do |config|
+  config.dsn = ENV['SENTRY_DSN']
+end
