@@ -8,5 +8,7 @@ class Api::ZipCodesController < ApplicationController
       render json: {success: false, input: params[:code], result: nil}
     end
     response.set_header('X-Mesa-Buggy-API-UID', SecureRandom.uuid)
+    response.set_header('Access-Control-Allow-Origin', '*')
+    request.set_header('Access-Control-Request-Method', %w{GET POST OPTIONS}.join(","))
   end
 end
