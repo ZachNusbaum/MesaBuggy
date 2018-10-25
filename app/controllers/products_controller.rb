@@ -4,6 +4,7 @@ class ProductsController < ApplicationController
   before_action :authenticate_admin_user!, only: [:edit, :update]
 
   def show
+    @review = @product.reviews.new
   end
 
   def edit

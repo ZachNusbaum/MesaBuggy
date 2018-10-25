@@ -18,7 +18,9 @@ Rails.application.routes.draw do
   end
 
   resources :categories, only: [:show]
-  resources :products, only: [:show, :edit, :update]
+  resources :products, only: [:show, :edit, :update] do
+    resource :reviews, only: [:create]
+  end
   resources :attachments, only: [:destroy]
 
   scope :cart do

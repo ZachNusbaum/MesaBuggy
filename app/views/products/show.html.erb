@@ -32,17 +32,31 @@
         <div class="card-header">
           Product Reviews
         </div>
+
         <div class="card-body">
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore, similique necessitatibus neque non! Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi mollitia, necessitatibus quae sint natus.</p>
-          <small class="text-muted">Posted by Anonymous on 3/1/17</small>
-          <hr>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore, similique necessitatibus neque non! Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi mollitia, necessitatibus quae sint natus.</p>
-          <small class="text-muted">Posted by Anonymous on 3/1/17</small>
-          <hr>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore, similique necessitatibus neque non! Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi mollitia, necessitatibus quae sint natus.</p>
-          <small class="text-muted">Posted by Anonymous on 3/1/17</small>
-          <hr>
-          <a href="#" class="btn btn-success">Leave a Review</a>
+          <% @product.reviews.each do |review| %>
+            <% next unless review.persisted? %>
+             <p><%= review.body %></p>
+            <small class="text-muted">Posted by <%= review.user.email %> on <%= review.created_at.strftime('%m/%d/%Y') %></small>
+            <hr>
+          <% end %>
+          <% if user_signed_in? %>
+           <%= form_with model: @review, url: product_reviews_path(@product), method: :post, local: true do |f| %>
+              <div class="form-group">
+                <label for="body">Message</label>
+                <%= f.text_area :body, class: 'form-control' %>
+              </div>
+              <div class="form-group">
+                <label for="rating">Rating</label>
+                <%= f.number_field :rating, class: 'form-control' %>
+              </div>
+              <div class="form-group">
+                <%= f.submit 'Submit Review', class: 'btn btn-success' %>
+              </div>
+            <% end %>
+          <% else %>
+            <p class="lead">Please sign in to leave a review.</p>
+          <% end %>
         </div>
       </div>
       <!-- /.card -->
