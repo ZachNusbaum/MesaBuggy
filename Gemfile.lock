@@ -241,6 +241,7 @@ GEM
     pghero (2.2.0)
       activerecord
     popper_js (1.14.3)
+    postjoy (0.0.2)
     public_suffix (3.0.3)
     puma (3.12.0)
     rack (2.0.5)
@@ -379,6 +380,7 @@ DEPENDENCIES
   pg (>= 0.18, < 2.0)
   pg_query (>= 0.9.0)
   pghero
+  postjoy
   puma (~> 3.11)
   rails (~> 5.2.1)
   rails-erd
