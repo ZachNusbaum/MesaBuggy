@@ -42,7 +42,7 @@ permit_params :name, :description, :category_id, :price_cents, :price, :quantity
     end
 
     product.images.each do |image|
-      para raw(image_tag(image, width: 100))
+      para raw(image_tag(image.variant(resize: "100x100")))
       para(link_to('Delete', attachment_path(image.id), method: :delete))
     end
   end

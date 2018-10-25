@@ -12,7 +12,7 @@
 				
 					<div class="card">
 						<% if product.images.any? %>
-				      		<img class="card-img-top img-responsive"  src="<%= url_for(product.images.first) %>" alt="">
+				      		<img class="card-img-top img-responsive"  src="<%= url_for(product.images.first.variant(resize: "200x200")) %>" alt="">
 				      	<% else %>
 				      		<img class="card-img-top" src="http://placehold.it/500x325" alt="">
 				      	<% end %>
