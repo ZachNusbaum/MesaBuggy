@@ -11,7 +11,11 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
   authenticate :user, ->(user) { user.admin? } do
     mount Blazer::Engine, at: "blazer"
-  end 
+  end
+
+  authenticate :user, -> (user) { user.admin? } do
+    mount PgHero::Engine, at: "pghero"
+  end
 
   resources :categories, only: [:show]
   resources :products, only: [:show, :edit, :update]
