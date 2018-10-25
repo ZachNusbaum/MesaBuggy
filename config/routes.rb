@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   namespace :reports do
     resources :visits, only: [:show]
   end
@@ -9,12 +10,11 @@ Rails.application.routes.draw do
   end
 
   ActiveAdmin.routes(self)
+
   authenticate :user, ->(user) { user.admin? } do
     mount Blazer::Engine, at: "blazer"
-  end
-
-  authenticate :user, -> (user) { user.admin? } do
     mount PgHero::Engine, at: "pghero"
+    mount Delayed::Web::Engine, at: '/jobs'
   end
 
   resources :categories, only: [:show]

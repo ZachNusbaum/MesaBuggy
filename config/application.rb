@@ -19,6 +19,7 @@ Bundler.require(*Rails.groups)
 
 module MesaBuggy
   class Application < Rails::Application
+    config.assets.precompile << 'delayed/web/application.css'
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.2
 
@@ -29,5 +30,6 @@ module MesaBuggy
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+    config.active_job.queue_adapter = :delayed_job
   end
 end
