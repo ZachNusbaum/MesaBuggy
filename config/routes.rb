@@ -32,6 +32,10 @@ Rails.application.routes.draw do
   get 'privacy_policy', to: 'pages#privacy'
   get 'about', to: 'pages#about'
 
+  namespace :api do
+    get 'zip/:code', to: 'zip_codes#lookup'
+  end
+
   root to: 'pages#home'
   devise_for :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
