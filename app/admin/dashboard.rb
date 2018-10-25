@@ -8,6 +8,14 @@ ActiveAdmin.register_page "Dashboard" do
         panel 'Welcome to MesaBuggy!' do
           para 'Intro text will go here.'
         end
+
+        panel 'Recent Logins' do
+          table_for LoginActivity.all.order(created_at: :desc).limit(10) do
+            column("Time") { |activity| activity.created_at }
+            column(:identity)
+            column(:success)
+          end
+        end
       end
 
       column do
