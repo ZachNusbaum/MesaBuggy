@@ -70,3 +70,4 @@ gem "actiontext", github: "rails/actiontext", require: "action_text"
 gem 'rails_db', '2.0.2'
 gem 'ransack', github: 'activerecord-hackery/ransack'
 gem 'ahoy_matey'
+gem 'blazer'

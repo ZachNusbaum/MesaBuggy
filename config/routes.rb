@@ -9,6 +9,9 @@ Rails.application.routes.draw do
   end
 
   ActiveAdmin.routes(self)
+  authenticate :user, ->(user) { user.admin? } do
+    mount Blazer::Engine, at: "blazer"
+  end 
 
   resources :categories, only: [:show]
   resources :products, only: [:show, :edit, :update]

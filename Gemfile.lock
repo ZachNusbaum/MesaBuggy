@@ -106,6 +106,11 @@ GEM
     aws-sigv4 (1.0.3)
     bcrypt (3.1.12)
     bindex (0.5.0)
+    blazer (1.9.0)
+      activerecord (>= 4)
+      chartkick
+      railties (>= 4)
+      safely_block (>= 0.1.1)
     bootsnap (1.3.2)
       msgpack (~> 1.0)
     bootstrap (4.1.3)
@@ -115,6 +120,7 @@ GEM
     browser (2.5.3)
     builder (3.2.3)
     byebug (10.0.2)
+    chartkick (3.0.1)
     choice (0.2.0)
     codemirror-rails (5.16.0)
       railties (>= 3.0, < 6.0)
@@ -328,6 +334,7 @@ DEPENDENCIES
   activeadmin
   ahoy_matey
   aws-sdk-s3
+  blazer
   bootsnap (>= 1.1.0)
   bootstrap (~> 4.1.2)
   byebug
