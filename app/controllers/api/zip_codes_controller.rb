@@ -1,5 +1,6 @@
 class Api::ZipCodesController < ApplicationController
   skip_before_action :authenticate_user!
+  skip_before_action :track_page_visit
   def lookup
     @zip = Postjoy.find(params[:code].split('-')[0])
     if @zip
