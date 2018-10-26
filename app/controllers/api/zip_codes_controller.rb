@@ -10,10 +10,11 @@ class Api::ZipCodesController < ApplicationController
     end
     response.set_header('X-Mesa-Buggy-API-UID', SecureRandom.uuid)
     response.set_header('Access-Control-Allow-Origin', '*')
-    request.set_header('Access-Control-Request-Method', %w{GET POST OPTIONS}.join(","))
+    response.set_header('Access-Control-Request-Method', %w{GET POST OPTIONS}.join(","))
   end
 
   def geocode
+    response.set_header('Access-Control-Allow-Origin', 'https://mesabuggy-zipcode-api-example.stackblitz.io/')
     render json: Geocodio.geocode(params[:query]).parsed_response
   end
 end
