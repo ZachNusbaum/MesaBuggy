@@ -172,6 +172,8 @@ GEM
     has_scope (0.7.2)
       actionpack (>= 4.1)
       activesupport (>= 4.1)
+    httparty (0.16.2)
+      multi_xml (>= 0.5.2)
     i18n (1.0.1)
       concurrent-ruby (~> 1.0)
     image_processing (1.7.1)
@@ -230,6 +232,7 @@ GEM
       railties (>= 3.0)
     msgpack (1.2.4)
     multi_json (1.13.1)
+    multi_xml (0.6.0)
     multipart-post (2.0.0)
     mysql2 (0.5.1)
     nio4r (2.3.1)
@@ -371,6 +374,7 @@ DEPENDENCIES
   delayed_job_active_record
   devise (~> 4.5.0)
   dotenv-rails
+  httparty
   image_processing (~> 1.2)
   jbuilder (~> 2.5)
   jquery-rails

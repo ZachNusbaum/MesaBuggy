@@ -34,6 +34,7 @@ Rails.application.routes.draw do
 
   namespace :api do
     get 'zip/:code', to: 'zip_codes#lookup'
+    get 'geocode/:query', to: 'zip_codes#geocode'
   end
 
   root to: 'pages#home'

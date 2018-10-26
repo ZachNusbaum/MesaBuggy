@@ -12,4 +12,8 @@ class Api::ZipCodesController < ApplicationController
     response.set_header('Access-Control-Allow-Origin', '*')
     request.set_header('Access-Control-Request-Method', %w{GET POST OPTIONS}.join(","))
   end
+
+  def geocode
+    render json: Geocodio.geocode(params[:query]).parsed_response
+  end
 end
