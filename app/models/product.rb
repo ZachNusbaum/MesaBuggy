@@ -5,4 +5,12 @@ class Product < ApplicationRecord
   belongs_to :category
   has_many_attached :images
   monetize :price_cents
+
+  validates :name, presence: true
+  validates :description, presence: true
+  validates :price_cents, presence: true
+
+  def average_rating
+    reviews.average(:rating)
+  end
 end
