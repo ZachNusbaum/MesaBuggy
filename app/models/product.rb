@@ -11,6 +11,6 @@ class Product < ApplicationRecord
   validates :price_cents, presence: true
 
   def average_rating
-    reviews.average(:rating)
+    reviews.average(:rating) || 0
   end
 end
