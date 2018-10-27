@@ -17,3 +17,7 @@
 //= require bootstrap
 //= require ahoy
 //= require_tree .
+
+$(document).ready(function() {
+	ahoy.trackAll();
+});
