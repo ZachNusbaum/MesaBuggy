@@ -6,4 +6,8 @@ class User < ApplicationRecord
 
   has_many :login_activities, as: :user
   has_many :addresses
+
+  def full_name
+    [first_name, last_name].join(" ")
+  end
 end

@@ -37,7 +37,7 @@
           <% @product.reviews.each do |review| %>
             <% next unless review.persisted? %>
              <p><%= review.body %></p>
-            <small class="text-muted"><%= raw("&#9733;" * review.rating) %> &mdash; Posted by <%= review.user.email %> on <%= review.created_at.strftime('%m/%d/%Y') %></small>
+            <small class="text-muted"><%= raw("&#9733;" * review.rating) %> &mdash; Posted by <%= review.user.full_name %> on <%= review.created_at.strftime('%m/%d/%Y') %></small>
             <hr>
           <% end %>
           <% if user_signed_in? %>
