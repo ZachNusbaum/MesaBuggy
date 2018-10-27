@@ -17,7 +17,11 @@
     <div class="col-lg-9">
 
       <div class="card mt-4">
-        <img class="card-img-top img-fluid" src="http://placehold.it/900x400" alt="">
+        <% if @product.images.any? %>
+          <%= image_tag url_for(@product.images.first.variant(resize: "900x400")) %>
+        <% else %>
+          <img class="card-img-top img-fluid" src="http://placehold.it/900x400" alt="">
+        <% end %>
         <div class="card-body">
           <h3 class="card-title"><%= @product.name %></h3>
           <h4><%= @product.price.format %></h4>
