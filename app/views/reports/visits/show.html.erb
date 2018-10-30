@@ -1,69 +1,98 @@
 
 <div class="container">
-	<h1>Visit Report</h1>
-	<p class="lead">ID: <%= @visit.visit_token %></p>
-	<p><%= @visit.started_at %></p>
-	<hr>
+    <h1>Visit Report</h1>
+    <p class="lead">ID: <%= @visit.visit_token %></p>
+    <p><%= @visit.started_at %></p>
+    <hr>
 
-	<table class="table table-sm table-bordered">
-		<tr>
-			<th>IP</th>
-			<td><%= @visit.ip %></td>
-		</tr>
+    <table class="table table-sm table-bordered">
+        <tr>
+            <th>Visitor ID</th>
+            <td><%= @visit.visitor_token %> (<%= pluralize(@visit.visitor_total_visits_count, 'visit') %>)</td>
+        </tr>
 
-		<tr>
-			<th>User Agent</th>
-			<td><%= @visit.user_agent %></td>
-		</tr>
+        <tr>
+            <th>IP</th>
+            <td><%= @visit.ip %></td>
+        </tr>
 
-		<tr>
-			<th>Referrer / Domain</th>
-			<% if !!@visit.referrer || !!@visit.referring_domain %>
-				<td><%= @visit.referrer %> / <%= @visit.referring_domain %></td>
-			<% else %>
-				<td>None</td>
-			<% end %>
-		</tr>
+        <tr>
+            <th>User Agent</th>
+            <td><%= @visit.user_agent %></td>
+        </tr>
 
-		<tr>
-			<th>Landing Page</th>
-			<td><%= @visit.landing_page %></td>
-		</tr>
+        <tr>
+            <th>Referrer / Domain</th>
+            <% if !!@visit.referrer || !!@visit.referring_domain %>
+                <td><%= @visit.referrer %> / <%= @visit.referring_domain %></td>
+            <% else %>
+                <td>None</td>
+            <% end %>
+        </tr>
 
-		<tr>
-			<th>Browser / OS / Device Type</th>
-			<td><%= @visit.browser %> / <%= @visit.os %> / <%= @visit.device_type %></td>
-		</tr>
+        <tr>
+            <th>Landing Page</th>
+            <td><%= @visit.landing_page %></td>
+        </tr>
 
-		<tr>
-			<th>City, Region, Country</th>
-			<td><%= @visit.city %>, <%= @visit.region %>, <%= @visit.country %></td>
-		</tr>
+        <tr>
+            <th>Browser / OS / Device Type</th>
+            <td><%= @visit.browser %> / <%= @visit.os %> / <%= @visit.device_type %></td>
+        </tr>
 
-		<tr>
-			<th>UTM Source</th>
-			<td><%= @visit.utm_source %></td>
-		</tr>
-	</table>
+        <tr>
+            <th>City, Region, Country</th>
+            <td><%= @visit.city %>, <%= @visit.region %>, <%= @visit.country %></td>
+        </tr>
 
-	<hr>
+        <tr>
+            <th>UTM Source</th>
+            <td><%= @visit.utm_source %></td>
+        </tr>
+    </table>
 
-	<h2><%= pluralize(@visit.events.count, "Event") %></h2>
-	<table class="table table-bordered table-hover table-striped">
-		<thead>
-			<tr>
-				<th>Action</th>
-				<th>Properties</th>
-			</tr>
-		</thead>
+    <hr>
+    <h2>All Visits From Same User</h2>
+    <table class="table table-sm table-bordered table-striped table-hover">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Date</th>
+          <th>IP</th>
+          <th>Location</th>
+          <th>Device Info</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @visit.visitor_visits.each do |vv| %>
+          <tr>
+            <td><%= link_to vv.id, reports_visit_path(vv.visit_token), class: 'btn btn-sm btn-primary' %></td>
+            <td><%= vv.started_at %></td>
+            <td><%= vv.ip %></td>
+            <td><%= vv.city %>, <%= vv.region %>, <%= vv.country %></td>
+            <td><%= vv.browser %> / <%= vv.os %> / <%= vv.device_type %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <hr>
 
-		<tbody>
-			<% @visit.events.each do |event| %>
-				<tr>
-					<td><%= event.name %></td>
-					<td><%= pp event.properties %></td>
-				</tr>
-			<% end %>
-		</tbody>
-	</table>
+    <h2><%= pluralize(@visit.events.count, "Event") %></h2>
+    <table class="table table-bordered table-hover table-striped">
+        <thead>
+            <tr>
+                <th>Action</th>
+                <th>Properties</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <% @visit.events.each do |event| %>
+                <tr>
+                    <td><%= event.name %></td>
+                    <td><%= pp event.properties %></td>
+                </tr>
+            <% end %>
+        </tbody>
+    </table>
 </div>
