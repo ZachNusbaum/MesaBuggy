@@ -1,29 +1,78 @@
 
 <div class="container">
-	<h1><%= pluralize(@order.cart_items.count, 'items') %> in cart.</h1>
-	<table class="table table-striped table-hover">
-		<thead>
-			<tr>
-				<th>Item</th>
-				<th>Quantity</th>
-				<th>Unit Price</th>
-				<th>Line Total</th>
-			</tr>
-		</thead>
-
-		<tbody>
-			<% @order.cart_items.each do |item| %>
+	<h1>Shopping Cart</h1>
+	<div class="card">
+		<div class="card-header bg-info text-white">
+			<%= pluralize(@order.cart_items.count, 'items') %> in cart.
+		</div>
+		<table class="table table-striped table-hover">
+			<thead>
 				<tr>
-					<td><%= item.product.name %></td>
-					<td><%= item.qty %></td>
-					<td><%= item.product.price.format %></td>
-					<td><%= item.line_total.format %></td>
+					<th>Item</th>
+					<th>Quantity</th>
+					<th>Unit Price</th>
+					<th>Line Total</th>
 				</tr>
-			<% end %>
-		</tbody>
-	</table>
-	<%= render 'coupon_form', order: @order %>
-	<p>SUBTOTAL: <%= @order.subtotal %></p>
-	<p>DISC. TOTAL: <%= @order.discount_total %></p>
-	<p>TOTAL: <%= @order.total %></p>
+			</thead>
+
+			<tbody>
+				<% @order.cart_items.each do |item| %>
+					<tr>
+						<td><%= item.product.name %></td>
+						<td>
+							<%= form_with model: item, url: update_qty_path(item.product.id), local: false, method: :patch, class: 'form-inline' do |f| %>
+								<div class="form-group">
+									<%= f.text_field :qty, class: 'form-control qty-field' %>
+								</div>
+								<div class="form-group">
+									<%= f.submit 'update', class: 'btn btn-primary' %>
+								</div>
+							<% end %>
+						</td>
+						<td><%= item.product.price.format %></td>
+						<td id="lt-<%= item.product.id %>"><%= item.line_total.format %></td>
+					</tr>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
+	<hr>
+	<div class="row card-group">
+		<div class="col-md-6">
+			<div class="card border-success mb-3">
+				<div class="card-header">
+					Add Coupon
+				</div>
+				<div class="card-body">
+					<%= render 'coupon_form', order: @order %>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-md-6">
+			<div class="card border-primary mb-3">
+				<div class="card-header">
+					Order Totals
+				</div>
+
+				<table class="table table-sm">
+					<tr>
+						<th>Subtotal</th>
+						<td id="subtotal"><%= @order.subtotal.format %></td>
+					</tr>
+					<tr>
+						<th>Discount</th>
+						<td id="discount">&minus;<%= @order.discount_total.format %></td>
+					</tr>
+					<tr>
+						<th>Order Total</th>
+						<td class="order-total" id="total"><%= @order.total.format %></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>
+	
+	
+	
 </div>

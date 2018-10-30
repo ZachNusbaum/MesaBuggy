@@ -1,0 +1,9 @@
+<% if @cart_item %>
+  alert('updated');
+  $('#subtotal').html("<%= @order.subtotal.format %>");
+  $('#discount').html("<%= @order.discount_total.format %>");
+  $('#total').html("<%= @order.total.format %>");
+  $('#lt-<%= @cart_item.product_id %>').html("<%= @cart_item.line_total.format %>");
+<% else %>
+  alert('error');
+<% end %>

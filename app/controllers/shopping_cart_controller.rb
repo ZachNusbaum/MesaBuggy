@@ -26,6 +26,12 @@ class ShoppingCartController < ApplicationController
     redirect_to cart_url, notice: 'Coupon applied!'
   end
 
+  def update_qty
+    @item = Product.find(params[:id])
+    @cart_item = @order.cart_items.where(product_id: @item.id).first
+    @cart_item.update(qty_params) if @cart_item
+  end
+
   private
 
   def create_order
@@ -47,6 +53,10 @@ class ShoppingCartController < ApplicationController
 
   def coupon_params
     params.require(:coupon).permit(:code)
+  end
+
+  def qty_params
+    params.require(:cart_item).permit(:qty)
   end
 
   def back_to_cart
