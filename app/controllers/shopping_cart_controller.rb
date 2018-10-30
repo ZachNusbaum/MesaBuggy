@@ -26,6 +26,11 @@ class ShoppingCartController < ApplicationController
     redirect_to cart_url, notice: 'Coupon applied!'
   end
 
+  def remove_coupon
+    @order.order_coupons.first.try(:destroy)
+    redirect_to cart_url
+  end
+
   def update_qty
     @item = Product.find(params[:id])
     @cart_item = @order.cart_items.where(product_id: @item.id).first

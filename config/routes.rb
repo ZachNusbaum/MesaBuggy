@@ -27,6 +27,7 @@ Rails.application.routes.draw do
     get '/', to: 'shopping_cart#show', as: 'cart'
     post 'add/:id', to: 'shopping_cart#add_product', as: 'cart_add_item'
     post 'apply_coupon', to: 'shopping_cart#apply_coupon', as: 'apply_coupon'
+    delete 'coupon', to: 'shopping_cart#remove_coupon', as: 'remove_coupon'
     patch '/update_qty/:id', to: 'shopping_cart#update_qty', as: 'update_qty'
   end
 
