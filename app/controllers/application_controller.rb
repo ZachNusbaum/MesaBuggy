@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   before_action :authenticate_user!
   before_action :set_search_query
-  # before_action :track_page_visit
+  before_action :track_page_visit
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :set_raven_context
 
@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
   end
 
   def track_page_visit
-    ahoy.track "Access Route", request.path_parameters
+    ahoy.track "$visit", request.path_parameters
   end
 
   private
