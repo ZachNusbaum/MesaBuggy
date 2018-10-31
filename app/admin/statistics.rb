@@ -19,5 +19,16 @@ ActiveAdmin.register_page "Statistics" do
         end
       end
     end
+
+    columns do
+      column do
+        panel 'Average Product Ratings' do
+          table_for Review.all.includes(:product).joins(:product).group('products.name').average(:rating).each do
+            column('Product') { |p| p[0] }
+            column('Avg. Rating') { |p| p[1] }
+          end
+        end
+      end
+    end
   end
 end
