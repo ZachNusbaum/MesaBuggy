@@ -12,7 +12,10 @@ ActiveAdmin.register_page "Statistics" do
 
       column do
         panel 'Search Stats' do
-
+          table_for Ahoy::Event.where(name: 'Site search') do
+            column :time
+            column("Query") { |event| event.properties['name_or_description_cont'] }
+          end
         end
       end
     end
