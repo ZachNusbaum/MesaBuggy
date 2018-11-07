@@ -7,7 +7,7 @@ class Api::ZipCodesController < ApplicationController
     if @zip
       render json: {success: true, input: params[:code], result: @zip}
     else
-      render json: {success: false, input: params[:code], result: nil}
+      render json: {success: false, input: params[:code], result: nil}, status: :not_found
     end
     response.set_header('X-Mesa-Buggy-API-UID', SecureRandom.uuid)
     response.set_header('Access-Control-Allow-Origin', '*')
