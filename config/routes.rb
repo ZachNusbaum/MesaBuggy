@@ -31,6 +31,9 @@ Rails.application.routes.draw do
     patch '/update_qty/:id', to: 'shopping_cart#update_qty', as: 'update_qty'
     get 'checkout', to: 'shopping_cart#checkout', as: 'checkout'
     post 'checkout', to: 'shopping_cart#process_checkout'
+    scope :checkout do
+      get 'success/:id', to: 'shopping_cart#checkout_success', as: 'checkout_success'
+    end
   end
 
   get 'privacy_policy', to: 'pages#privacy'

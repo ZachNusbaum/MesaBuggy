@@ -1,6 +1,6 @@
 class ShoppingCartController < ApplicationController
   skip_before_action :authenticate_user!
-  before_action :set_order
+  before_action :set_order, except: [:order_success]
 
   def show
   end
@@ -56,11 +56,18 @@ class ShoppingCartController < ApplicationController
       :currency    => 'usd'
     )
 
-    redirect_to root_url, notice: 'Order success'
+    @order.update(completed: true, payment_id: charge.id)
+
+    redirect_to checkout_success_url(charge.id), notice: 'Order success'
 
   rescue Stripe::CardError => e
     flash[:error] = e.message
     render :checkout
+  end
+
+  def order_success
+    @order = Order.find_by(payment_id: params[:id])
+    @charge = Stripe::Charge.retrieve(@order.payment_id)
   end
 
   private
