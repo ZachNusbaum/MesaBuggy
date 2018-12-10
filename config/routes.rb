@@ -30,6 +30,7 @@ Rails.application.routes.draw do
     delete 'coupon', to: 'shopping_cart#remove_coupon', as: 'remove_coupon'
     patch '/update_qty/:id', to: 'shopping_cart#update_qty', as: 'update_qty'
     get 'checkout', to: 'shopping_cart#checkout', as: 'checkout'
+    post 'checkout', to: 'shopping_cart#process_checkout'
   end
 
   get 'privacy_policy', to: 'pages#privacy'

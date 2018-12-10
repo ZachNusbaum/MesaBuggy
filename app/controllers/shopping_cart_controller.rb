@@ -38,6 +38,29 @@ class ShoppingCartController < ApplicationController
   end
 
   def checkout
+    if @order.cart_items.count === 0
+      redirect_to cart_url, notice: 'Your cart has no items.'
+    end
+  end
+
+  def process_checkout
+    customer = Stripe::Customer.create(
+      :email => params[:stripeEmail],
+      :source  => params[:stripeToken]
+    )
+
+    charge = Stripe::Charge.create(
+      :customer    => customer.id,
+      :amount      => @order.total.cents.to_s,
+      :description => order_params[:name],
+      :currency    => 'usd'
+    )
+
+    redirect_to root_url, notice: 'Order success'
+
+  rescue Stripe::CardError => e
+    flash[:error] = e.message
+    render :checkout
   end
 
   private
@@ -69,5 +92,9 @@ class ShoppingCartController < ApplicationController
 
   def back_to_cart
     redirect_to cart_url, alert: 'Error adding coupon'
+  end
+
+  def order_params
+    params.require(:order).permit!
   end
 end
