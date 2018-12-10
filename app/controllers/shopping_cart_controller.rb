@@ -37,6 +37,9 @@ class ShoppingCartController < ApplicationController
     @cart_item.update(qty_params) if @cart_item
   end
 
+  def checkout
+  end
+
   private
 
   def create_order

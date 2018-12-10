@@ -1,0 +1,43 @@
+<div class="container">
+	<h1>Checkout</h1>
+	<h3>SUBTOTAL: <%= @order.subtotal.format %> <span class="text-muted">(<%= pluralize(@order.cart_items.count, 'item') %>)</span></h3>
+	<%= form_with model: @order, url: '', method: :post do |f| %>
+		<div class="form-group">
+			<label for="order[name]">Name</label>
+			<%= f.text_field :name, class: 'form-control' %>
+		</div>
+
+		<div class="form-group">
+			<label for="order[address]">Address</label>
+			<%= f.text_field :address, class: 'form-control' %>
+		</div>
+
+		<div class="form-group">
+			<label for="order[city]">City</label>
+			<%= f.text_field :city, class: 'form-control' %>
+		</div>
+
+		<div class="form-group">
+			<label for="order[state]">State</label>
+			<%= f.text_field :state, class: 'form-control' %>
+		</div>
+
+		<div class="form-group">
+			<label for="order[zip]">ZIP</label>
+			<%= f.text_field :zip, class: 'form-control' %>
+		</div>
+
+		<h5>Order Summary</h5>
+		<ul>
+			<% @order.cart_items.each do |ci| %>
+				<li><%= ci.product.name %> x <%= ci.qty %> = <%= ci.line_total.format %></li>
+			<% end %>
+		</ul>
+
+		<script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+          data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+          data-description="Order <%= @order.id %>"
+          data-amount="<%= @order.total %>"
+          data-locale="auto"></script>
+	<% end %>
+</div>
