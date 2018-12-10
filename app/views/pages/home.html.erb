@@ -17,19 +17,19 @@
 		<!--<div class="col-lg-3 col-md-6 mb-4">-->
 	      <div class="card">
 	      	<% if product.images.any? %>
-	      		<img class="card-img-top2" width="200px" src="<%= url_for(product.images.first.variant(resize: "200x200")) %>" alt="">
+	      		<img class="card-img-top2" src="<%= url_for(product.images.first.variant(resize: "200x200")) %>" alt="">
 	      	<% else %>
 	      		<img class="card-img-top2" src="http://placehold.it/200x200" alt="">
 	      	<% end %>
-	        
+
 	        <div class="card-body">
 	          <h4 class="card-title"><%= product.name %></h4>
 	          <p class="card-text"><%= truncate strip_tags(product.description), length: 75 %></p>
 	          <h5><%= product.price.format %></h5>
+	          <p class="text-center"><%= link_to 'Details', product_path(product), class: 'btn btn-primary btn-sm' %></p>
 	        </div>
 	        <div class="card-footer">
 	        	<div class="btn-group">
-	        		<%= link_to 'More', product_path(product), class: 'btn btn-primary btn-sm' %>
 	        		<%= link_to 'Add to Cart', cart_add_item_path(product.id), method: :post, class: 'btn btn-success btn-sm' %>
 	        		<%= link_to 'Buy Now', 'javascript:alert("Not yet implemented.")', class: 'btn btn-info btn-sm' %>
 	        	</div>
