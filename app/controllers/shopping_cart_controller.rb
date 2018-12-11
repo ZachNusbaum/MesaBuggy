@@ -51,7 +51,7 @@ class ShoppingCartController < ApplicationController
   end
 
   def process_checkout
-    raise "EMPTY ADDRESS" if address_empty?
+    raise IncompleteAddress if address_empty?
     customer = Stripe::Customer.create(
       :email => params[:stripeEmail],
       :source  => params[:stripeToken]
@@ -80,6 +80,8 @@ class ShoppingCartController < ApplicationController
 
   rescue Stripe::CardError => e
     flash[:error] = e.message
+    render :checkout
+  rescue IncompleteAddress
     render :checkout
   end
 
@@ -125,4 +127,6 @@ class ShoppingCartController < ApplicationController
   def address_empty?
     order_params[:address].blank? || order_params[:city].blank? || order_params[:state].blank? || order_params[:zip].blank?
   end
+
+  class IncompleteAddress < StandardError; end;
 end
