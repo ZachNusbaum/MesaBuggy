@@ -1,7 +1,10 @@
-<ul class="nav bg-success">
-  <% Category.all.each do |category| %>
-    <li class="nav-item">
-      <a class="nav-link text-light" href="<%= category_path(category) %>"><%= category.name %></a>
-    </li>
-  <% end %>
-</ul>
+
+<div class="category_nav">
+	<ul class="nav bg-success">
+	  <% Category.all.each do |category| %>
+	    <li class="nav-item">
+	      <a class="nav-link text-light" href="<%= category_path(category) %>"><%= category.name %></a>
+	    </li>
+	  <% end %>
+	</ul>
+</div>
