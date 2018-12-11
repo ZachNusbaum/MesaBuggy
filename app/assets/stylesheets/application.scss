@@ -42,3 +42,12 @@
 .qty-field {
   width: 50px;
 }
+
+.home {
+  .jumbotron {
+    background-image: image-url('bg.png');
+    h1 {
+      background-color: rgba(255, 255, 255, 0.5);
+    }
+  }
+}

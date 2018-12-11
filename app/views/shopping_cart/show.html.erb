@@ -37,7 +37,9 @@
 			</tbody>
 		</table>
 	</div>
-	<span class="text-center"><%= link_to 'Checkout Now', checkout_path, class: 'btn btn-lg btn-primary' %></span>
+	<% if @order.cart_items.count > 0 %>
+		<span class="text-center"><%= link_to 'Checkout Now', checkout_path, class: 'btn btn-lg btn-primary' %></span>
+	<% end %>
 	<hr>
 	<div class="row card-group">
 		<div class="col-md-6">
