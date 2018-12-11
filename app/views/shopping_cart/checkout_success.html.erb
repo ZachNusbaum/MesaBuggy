@@ -1,3 +1,45 @@
-<h1>Success!</h1>
-<h4>Order #<%= @order.id %></h4>
-<%= @order.charge['source']['brand'] %> &mdash; <%= @order.charge['source']['last4'] %>
+
+<div class="container">
+	<h1>Success!</h1>
+	<hr>
+	<h4 class="text-muted">Order #<%= @order.id %></h4>
+
+	<h2>Payment Details</h2>
+	Method: <%= @order.charge['source']['brand'] %> &mdash; <%= @order.charge['source']['last4'] %>
+	<br>
+	Amount: <%= @order.total.format %>
+	<h2>Customer Address</h2>
+	<p>
+		<%= @order.name.upcase %> <br>
+		<%= @order.address.upcase %> <br>
+		<%= @order.city.upcase %>, <%= @order.state.upcase %> <%= @order.zip %>
+	</p>
+
+	<h2>Items</h2>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Product</th>
+				<th>Quantity</th>
+				<th>Unit Price</th>
+				<th>Line Total</th>
+			</tr>
+		</thead>
+
+		<tbody>
+			<% @order.cart_items.each do |item| %>
+				<tr>
+					<td><%= item.product.name %></td>
+					<td><%= item.qty %></td>
+					<td><%= item.product.price.format %></td>
+					<td><%= item.line_total.format %></td>
+				</tr>
+			<% end %>
+			<tr>
+				<td colspan="2"></td>
+				<td class="text-muted">Discount</td>
+				<td class="text-muted"><%= @order.discount_total.format %></td>
+			</tr>
+		</tbody>
+	</table>
+</div>

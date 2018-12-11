@@ -70,6 +70,7 @@ class ShoppingCartController < ApplicationController
     )
 
     @order.update!(completed: true, payment_id: charge.id, charge: charge.to_h)
+    @order.update!(order_params)
     reset_session
     redirect_to checkout_success_url(charge.id), notice: 'Order success'
     # session[:order_id] = nil
