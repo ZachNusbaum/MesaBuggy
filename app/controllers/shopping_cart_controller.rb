@@ -51,6 +51,7 @@ class ShoppingCartController < ApplicationController
   end
 
   def process_checkout
+    raise "EMPTY ADDRESS" if address_empty?
     customer = Stripe::Customer.create(
       :email => params[:stripeEmail],
       :source  => params[:stripeToken]
@@ -71,6 +72,7 @@ class ShoppingCartController < ApplicationController
 
     @order.update!(completed: true, payment_id: charge.id, charge: charge.to_h)
     @order.update!(order_params)
+    OrdersMailer.success(@order).deliver_later!
     reset_session
     redirect_to checkout_success_url(charge.id), notice: 'Order success'
     # session[:order_id] = nil
@@ -118,5 +120,9 @@ class ShoppingCartController < ApplicationController
 
   def order_params
     params.require(:order).permit!
+  end
+
+  def address_empty?
+    @order.address.blank? || @order.city.blank? || @order.state.blank? || @order.zip.blank?
   end
 end

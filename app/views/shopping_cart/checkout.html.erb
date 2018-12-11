@@ -46,3 +46,23 @@
           data-locale="auto"></script>
 	<% end %>
 </div>
+
+<script type="text/javascript">
+	(function() {
+	    $('form > input').keyup(function() {
+	    	console.log(this);
+	        var empty = false;
+	        $('form > input').each(function() {
+	            if ($(this).val() == '') {
+	                empty = true;
+	            }
+	        });
+
+	        if (empty) {
+	            $('.stripe-button-el').attr('disabled', 'disabled'); // updated according to http://stackoverflow.com/questions/7637790/how-to-remove-disabled-attribute-with-jquery-ie
+	        } else {
+	            $('.stripe-button-el').removeAttr('disabled'); // updated according to http://stackoverflow.com/questions/7637790/how-to-remove-disabled-attribute-with-jquery-ie
+	        }
+	    });
+	})()
+</script>
