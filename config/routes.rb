@@ -39,6 +39,8 @@ Rails.application.routes.draw do
 
   get 'privacy_policy', to: 'pages#privacy'
   get 'about', to: 'pages#about'
+  get 'terms', to: 'pages#terms'
+  get 'help', to: 'pages#help'
 
   namespace :api do
     get 'zip/:code', to: 'zip_codes#lookup'
