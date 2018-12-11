@@ -1,6 +1,7 @@
 class ShoppingCartController < ApplicationController
   skip_before_action :authenticate_user!
-  before_action :set_order, except: [:order_success]
+  before_action :set_order, except: [:checkout_success]
+  skip_before_action :verify_authenticity_token, only: [:process_checkout]
 
   def show
   end
@@ -37,6 +38,12 @@ class ShoppingCartController < ApplicationController
     @cart_item.update(qty_params) if @cart_item
   end
 
+  def remove_item
+    @cart_item = @order.cart_items.where(product_id: params[:id]).first
+    @cart_item.destroy
+    redirect_to cart_url
+  end
+
   def checkout
     if @order.cart_items.count === 0
       redirect_to cart_url, notice: 'Your cart has no items.'
@@ -51,23 +58,30 @@ class ShoppingCartController < ApplicationController
 
     charge = Stripe::Charge.create(
       :customer    => customer.id,
-      :amount      => @order.total.cents.to_s,
-      :description => order_params[:name],
-      :currency    => 'usd'
+      :amount      => @order.total.cents,
+      :description => "PetStore - Order #{@order.id}",
+      :currency    => 'usd',
+      :metadata    => {
+        id: @order.id,
+        subtotal: @order.subtotal,
+        total: @order.total
+      },
+      :statement_descriptor => "PET STORE PURCHASE"
     )
 
-    @order.update(completed: true, payment_id: charge.id)
-
+    @order.update!(completed: true, payment_id: charge.id, charge: charge.to_h)
+    reset_session
     redirect_to checkout_success_url(charge.id), notice: 'Order success'
+    # session[:order_id] = nil
+
 
   rescue Stripe::CardError => e
     flash[:error] = e.message
     render :checkout
   end
 
-  def order_success
+  def checkout_success
     @order = Order.find_by(payment_id: params[:id])
-    @charge = Stripe::Charge.retrieve(@order.payment_id)
   end
 
   private

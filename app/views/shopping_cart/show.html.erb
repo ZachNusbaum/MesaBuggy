@@ -28,6 +28,7 @@
 									<%= f.submit 'update', class: 'btn btn-primary' %>
 								</div>
 							<% end %>
+							<%= link_to '(x)', remove_item_path(item.product.id), method: :delete %>
 						</td>
 						<td><%= item.product.price.format %></td>
 						<td id="lt-<%= item.product.id %>"><%= item.line_total.format %></td>
@@ -36,6 +37,7 @@
 			</tbody>
 		</table>
 	</div>
+	<span class="text-center"><%= link_to 'Checkout Now', checkout_path, class: 'btn btn-lg btn-primary' %></span>
 	<hr>
 	<div class="row card-group">
 		<div class="col-md-6">

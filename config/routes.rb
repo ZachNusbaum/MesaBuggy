@@ -29,6 +29,7 @@ Rails.application.routes.draw do
     post 'apply_coupon', to: 'shopping_cart#apply_coupon', as: 'apply_coupon'
     delete 'coupon', to: 'shopping_cart#remove_coupon', as: 'remove_coupon'
     patch '/update_qty/:id', to: 'shopping_cart#update_qty', as: 'update_qty'
+    delete '/cart/item/:id', to: 'shopping_cart#remove_item', as: 'remove_item'
     get 'checkout', to: 'shopping_cart#checkout', as: 'checkout'
     post 'checkout', to: 'shopping_cart#process_checkout'
     scope :checkout do

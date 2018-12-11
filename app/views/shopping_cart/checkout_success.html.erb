@@ -1,5 +1,3 @@
 <h1>Success!</h1>
-<% unless @charge %>
-	NO CHARGE FOUND
-	<%= @order.attributes %>
-<% end %>
+<h4>Order #<%= @order.id %></h4>
+<%= @order.charge['source']['brand'] %> &mdash; <%= @order.charge['source']['last4'] %>

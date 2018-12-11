@@ -42,7 +42,7 @@
 		<script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
           data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
           data-description="Order <%= @order.id %>"
-          data-amount="<%= @order.total %>"
+          data-amount="<%= @order.total.cents %>"
           data-locale="auto"></script>
 	<% end %>
 </div>
