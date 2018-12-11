@@ -123,6 +123,6 @@ class ShoppingCartController < ApplicationController
   end
 
   def address_empty?
-    @order.address.blank? || @order.city.blank? || @order.state.blank? || @order.zip.blank?
+    order_params[:address].blank? || order_params[:city].blank? || order_params[:state].blank? || order_params[:zip].blank?
   end
 end
