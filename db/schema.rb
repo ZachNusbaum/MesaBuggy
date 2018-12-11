@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_10_152308) do
+ActiveRecord::Schema.define(version: 2018_12_11_083152) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
@@ -252,6 +252,12 @@ ActiveRecord::Schema.define(version: 2018_12_10_152308) do
     t.boolean "completed"
     t.string "payment_id"
     t.jsonb "charge"
+    t.string "name"
+    t.string "address"
+    t.string "city"
+    t.string "state"
+    t.string "zip"
+    t.string "email"
   end
 
   create_table "pghero_query_stats", force: :cascade do |t|
