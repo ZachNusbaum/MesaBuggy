@@ -1,20 +1,23 @@
-<h1>Search Results</h1>
-<table class="table">
-	<thead>
-		<tr>
-			<th>Name</th>
-			<th>Price</th>
-			<th></th>
-		</tr>
-	</thead>
-
-	<tbody>
-		<% @products.each do |prod| %>
+<div class="container">
+	<br>
+	<h4>Your search for "<%= params[:q][:name_or_description_cont] != '' ? params[:q][:name_or_description_cont] : 'ALL' %>" yielded <%= pluralize @products.count, 'result' %></h4>
+	<table class="table">
+		<thead>
 			<tr>
-				<td><%= prod.name %></td>
-				<td><%= prod.price.format %></td>
-				<td><%= link_to 'View', prod %></td>
+				<th>Name</th>
+				<th>Price</th>
+				<th></th>
 			</tr>
-		<% end %>
-	</tbody>
-</table>
+		</thead>
+
+		<tbody>
+			<% @products.each do |prod| %>
+				<tr>
+					<td><%= prod.name %></td>
+					<td><%= prod.price.format %></td>
+					<td><%= link_to 'View', prod %></td>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
+</div>
